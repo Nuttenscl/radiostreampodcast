@@ -1,7 +1,7 @@
 radiostreampodcast
 ==================
 
-radio station command line streaming and podcast browsing written in python. The stream and podcast playing is done using mplayer. Depending on the station, you can choose between
+This is a radio station command line streaming and podcast browsing software written in python. The stream and podcast playing is done using mplayer. The browsing capability make it different with usual podcast reader. You don't subscribe to podcast by providing a xml (rss) file but you browse in the command line through the station podcast (extracted from the station web page) to search for the interesting content. Depending on the station, you can choose between
 
 	- podcast global search (RTBF group)
 	- list station programmes
