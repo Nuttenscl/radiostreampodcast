@@ -79,6 +79,8 @@ Choose your station
 station code (or exit):
 ```
 
+Continuing with bbc1:
+
 ```
 ***************************
 *  bbc 1
