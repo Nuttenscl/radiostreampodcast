@@ -31,7 +31,7 @@ run with
 	Radio 1 (radio1\*) -  Radio 2 (radio2\*) -  Klara (klara\*) -  Studio Brussel (stubru\*) -  Sporza (sporza\*) -  MNM (mnm\*)  
 
 
- *\*live stream only*
+ \* *live stream only*
 
 ###dependencies
 ####python libraries:
