@@ -16,7 +16,7 @@ run with
 	bbc 1 (bbc1) -  bbc 2 (bbc2) -  bbc 3 (bbc3) -  bbc 4 (bbc4) -  bbc 5 (bbc5) -  bbc 6 (bbc6)  
 
   - RTL group :
-	RTL France (rtlfr) -  RTL2 France (rtl2fr) -  Fun Radio Fr. (funradiofr*) -  BelRTL Belgique (belrtlbe\*) -  Radio Contact Belgique (radiocontactbe\*) -  Mint (mintbe\*) 
+	RTL France (rtlfr) -  RTL2 France (rtl2fr) -  Fun Radio Fr. (funradiofr\*) -  BelRTL Belgique (belrtlbe\*) -  Radio Contact Belgique (radiocontactbe\*) -  Mint (mintbe\*) 
 
   - Lagardere group :
 	Europe 1 (europe1)   
@@ -31,7 +31,7 @@ run with
 	Radio 1 (radio1\*) -  Radio 2 (radio2\*) -  Klara (klara\*) -  Studio Brussel (stubru\*) -  Sporza (sporza\*) -  MNM (mnm\*)  
 
 
- \**live stream only
+ *\*live stream only*
 
 ###dependencies
 ####python libraries:
