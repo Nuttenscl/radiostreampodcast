@@ -2,14 +2,15 @@ import feedparser
 from lxml import etree,html
 from cssselect import GenericTranslator, SelectorError
 import re
-from lib.base_podcast import emission, station
+from lib.base_podcast import emission, station,stationgroup
 from prettytable import PrettyTable
 import sqlite3
 
 class stationradiofrance(station):
-	def __init__(self,name,url="",streamurl="",titlearg="",urlarg=""):
-		station.__init__(self,name,url,streamurl)
+	def __init__(self,name,code="",url="",streamurl="",titlearg="",urlarg=""):
+		station.__init__(self,name,code,url,streamurl)
 		self.name=name
+		self.code=code
 		self.url=url
 		self.streamurl=streamurl
 		self.argtitle=titlearg
@@ -91,8 +92,10 @@ class emissionradiofrance(emission):
 		self.podcasturl=podcasturl
 
 
-inter = stationradiofrance('France Inter',"http://www.franceinter.fr/podcasts/liste","http://www.tv-radio.com/station/france_inter_mp3/france_inter_mp3-128k.m3u",".contenu h2 a",".podrss")
-mouv  = stationradiofrance('Le Mouv',"http://www.lemouv.fr/podcasts",".row .title","http://www.tv-radio.com/station/le_mouv_mp3/le_mouv_mp3-128k.m3u",".row .podcast-links a.podcast-rss")
-info  = stationradiofrance('France Info',"http://www.franceinfo.fr/programmes-chroniques/podcasts","http://www.tv-radio.com/station/france_info/france_info.m3u",".emission-gdp h2 a", ".podcast .last a")
-culture = stationradiofrance('France culture',"http://www.franceculture.fr/podcasts","http://www.tv-radio.com/station/france_culture_mp3/france_culture_mp3-128k.m3u","li h3 a","li h3 a")
-fip = stationradiofrance('FIP',"http://www.fipradio.fr/emissions","http://www.tv-radio.com/station/fip_mp3/fip_mp3-128k.m3u",".rubrique_emission a h1.title",".podcast_rss a")
+inter = stationradiofrance('France Inter', "frinter","http://www.franceinter.fr/podcasts/liste","http://www.tv-radio.com/station/france_inter_mp3/france_inter_mp3-128k.m3u",".contenu h2 a",".podrss")
+mouv  = stationradiofrance('Le Mouv',"lemouv","http://www.lemouv.fr/podcasts",".row .title","http://www.tv-radio.com/station/le_mouv_mp3/le_mouv_mp3-128k.m3u",".row .podcast-links a.podcast-rss")
+info  = stationradiofrance('France Info',"frinfo","http://www.franceinfo.fr/programmes-chroniques/podcasts","http://www.tv-radio.com/station/france_info/france_info.m3u",".emission-gdp h2 a", ".podcast .last a")
+culture = stationradiofrance('France culture',"frculture","http://www.franceculture.fr/podcasts","http://www.tv-radio.com/station/france_culture_mp3/france_culture_mp3-128k.m3u","li h3 a","li h3 a")
+fip = stationradiofrance('FIP',"frfip","http://www.fipradio.fr/emissions","http://www.tv-radio.com/station/fip_mp3/fip_mp3-128k.m3u",".rubrique_emission a h1.title",".podcast_rss a")
+
+RadioFrance = stationgroup("Radio France",[inter,mouv,info,culture,fip])

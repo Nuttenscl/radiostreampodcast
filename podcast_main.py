@@ -12,7 +12,7 @@ import readline
 import os
 clear = lambda: os.system('clear')
 
-allstationgroup=[BBC,RTL,RTBF,Lagardere,VRT]
+allstationgroup=[BBC,RTL,Lagardere,RadioFrance,RTBF,VRT]
 
 allstation={}
 
