@@ -13,19 +13,23 @@ run with
 `./podcast_main.py ` after giving the running permission
 ###currently available stations
   - BBC group :
-	bbc 1 (bbc1) -  bbc 2 (bbc2) -  bbc 3 (bbc3) -  bbc 4 (bbc4) -  bbc 5 (bbc5) -  bbc 6 (bbc6) -  
+	bbc 1 (bbc1) -  bbc 2 (bbc2) -  bbc 3 (bbc3) -  bbc 4 (bbc4) -  bbc 5 (bbc5) -  bbc 6 (bbc6)  
 
   - RTL group :
-	RTL France (rtlfr) -  RTL France (rtl2fr) -  Fun Radio Fr. (funradiofr*) -  BelRTL Belgique (belrtlbe*) -  Radio Contact Belgique (radiocontactbe*) -  Mint (mintbe*) -  
-
-  - RTBF group :
-	La premiere (lapremiere) -  Musique 3 (musiq3) -  Classic 21 (classic21) -  Pure fm (purefm) -  Vivacite (vivacite) -  
+	RTL France (rtlfr) -  RTL France (rtl2fr) -  Fun Radio Fr. (funradiofr*) -  BelRTL Belgique (belrtlbe*) -  Radio Contact Belgique (radiocontactbe*) -  Mint (mintbe*) 
 
   - Lagardere group :
-	Europe 1 (europe1) -  
+	Europe 1 (europe1)   
+
+  - Radio France group :
+	France Inter (frinter) -  Le Mouv (lemouv) -  France Info (frinfo) -  France culture (frculture) -  FIP (frfip)  
+
+  - RTBF group :
+	La premiere (lapremiere) -  Musique 3 (musiq3) -  Classic 21 (classic21) -  Pure fm (purefm) -  Vivacite (vivacite)  
 
   - VRT group :
-	Radio 1 (radio1*) -  Radio 2 (radio2*) -  Klara (klara*) -  Studio Brussel (stubru*) -  Sporza (sporza*) -  MNM (mnm*) -  
+	Radio 1 (radio1*) -  Radio 2 (radio2*) -  Klara (klara*) -  Studio Brussel (stubru*) -  Sporza (sporza*) -  MNM (mnm*)  
+
 
  *live stream only
 
@@ -59,11 +63,14 @@ Choose your station
   - RTL group :
 	RTL France (rtlfr) -  RTL France (rtl2fr) -  Fun Radio Fr. (funradiofr*) -  BelRTL Belgique (belrtlbe*) -  Radio Contact Belgique (radiocontactbe*) -  Mint (mintbe*) -  
 
+  - Lagardere group :
+	Europe 1 (europe1)   -  
+
+  - Radio France group :
+	France Inter (frinter) -  Le Mouv (lemouv) -  France Info (frinfo) -  France culture (frculture) -  FIP (frfip) -   
+
   - RTBF group :
 	La premiere (lapremiere) -  Musique 3 (musiq3) -  Classic 21 (classic21) -  Pure fm (purefm) -  Vivacite (vivacite) -  
-
-  - Lagardere group :
-	Europe 1 (europe1) -  
 
   - VRT group :
 	Radio 1 (radio1*) -  Radio 2 (radio2*) -  Klara (klara*) -  Studio Brussel (stubru*) -  Sporza (sporza*) -  MNM (mnm*) -  
