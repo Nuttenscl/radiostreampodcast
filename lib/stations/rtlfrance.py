@@ -62,7 +62,7 @@ class emissionrtl(emission):
 
 
 rtlfr  = stationrtl("RTL France","rtlfr","http://www.rtl.fr/recherche?type=emission&query=","http://radio.rtl.fr/rtl.pls",'.show figure a.post-link',True)
-rtl2fr = stationrtl("RTL France","rtl2fr","http://www.rtl2.fr/radio/podcasts.html#","http://streaming.radio.rtl2.fr/rtl2-1-44-128",'.common h3',".common .rss")
+rtl2fr = stationrtl("RTL2 France","rtl2fr","http://www.rtl2.fr/radio/podcasts.html#","http://streaming.radio.rtl2.fr/rtl2-1-44-128",'.common h3',".common .rss")
 funradiofr = station("Fun Radio Fr.","funradiofr","http://www.funradio.fr/","http://streaming.radio.funradio.fr:80/fun-1-44-128",True)
 
 belrtlbe = station("BelRTL Belgique","belrtlbe","http://www.rtl.be/belrtl/","http://icy.rtl.nl/belrtl128",True)
