@@ -1,12 +1,12 @@
 #!/usr/bin/python
 
-from lib.base_podcast import emission, station
-from lib.stations.radiofrance import *
-from lib.stations.rtlfrance import *
-from lib.stations.rtbf import *
-from lib.stations.europe1 import *
-from lib.stations.bbc import *
-from lib.stations.vrt import *
+from .lib.base_podcast import emission, station
+from .lib.stations.radiofrance import *
+from .lib.stations.rtlfrance import *
+from .lib.stations.rtbf import *
+from .lib.stations.europe1 import *
+from .lib.stations.bbc import *
+from .lib.stations.vrt import *
 
 import readline
 import os
@@ -21,7 +21,7 @@ for group in allstationgroup:
 		allstation[st.code]=st
 
 def complete(text, state):
-    for cmd in allstation.keys():
+    for cmd in list(allstation.keys()):
         if cmd.startswith(text):
             if not state:
                 return cmd
@@ -35,24 +35,24 @@ def clearscreen():
 	os.system('cls' if os.name == 'nt' else 'clear')
 
 def printglobheader():
-	print '---------------------------------------------'
-	print '|  Radio Station stream and podcast browser |'
-	print '---------------------------------------------'
+	print('---------------------------------------------')
+	print('|  Radio Station stream and podcast browser |')
+	print('---------------------------------------------')
 def printheader(chaine):
-	print '\n***************************'
-	print '*  '+chaine
-	print '***************************',
+	print('\n***************************')
+	print('*  '+chaine)
+	print('***************************', end=' ')
 def printstationlist():
 	for group in allstationgroup:
-		print "  - "+group.name+" group :\n\t",
+		print("  - "+group.name+" group :\n\t", end=' ')
 		for st in group.stations:
 			if st.lso==True:
 				lss="*"
 			else :
 				lss=""
-			print st.name+" ("+st.code+lss+') - ', 
-		print "\n"
-	print " *live stream only station\n"
+			print(st.name+" ("+st.code+lss+') - ', end=' ') 
+		print("\n")
+	print(" *live stream only station\n")
 
 
 def main():
@@ -66,22 +66,22 @@ def main():
 	menu['4']="change station"
 	menu['5']="Exit"
 	while True: 
-		options=menu.keys()
+		options=list(menu.keys())
 		options.sort()
 	#	os.system('cls' if os.name == 'nt' else 'clear')
 		clearscreen()
 		printglobheader()
-		print "\nChoose your station\n********************"
+		print("\nChoose your station\n********************")
 		printstationlist()
 #		print ' - '.join(sorted(allstation.keys())) + " - 0 to exit"
-		chaine=raw_input("station code (or exit):")
+		chaine=input("station code (or exit):")
 		if chaine =='0' or chaine=="exit":
 			return 0
 		clearscreen()
 		try:
 			printheader(allstation[chaine].name)
 		except KeyError:
-			print "wrong selection"
+			print("wrong selection")
 			continue
 		if allstation[chaine] in RTBF.stations :
 			options=[options[ii] for ii in (0,1,3,4,5)]
@@ -91,38 +91,38 @@ def main():
 			options=options[1:6]
 		while True: 
 			query=""
-			print "\n"
+			print("\n")
 			for entry in options: 
-		  		print entry+") "+menu[entry],"  ",
-			selection=raw_input("\nPlease Select action:") 
+		  		print(entry+") "+menu[entry],"  ", end=' ')
+			selection=input("\nPlease Select action:") 
 			#if selection =='0': 
 			#	print ' - '.join(allstation.keys())
 			if selection =='1': 
 				if allstation[chaine].query :
-					query=raw_input("query:") 
+					query=input("query:") 
 			  	allstation[chaine].listemissions(query)
 			elif selection == '2': 
-				emissid=raw_input("index programme:") 
-				maxx=raw_input("how many to display?") 
+				emissid=input("index programme:") 
+				maxx=input("how many to display?") 
 				if not hasattr(allstation[chaine],"emissions"):
 					if allstation[chaine].query :
-						query=raw_input("query:") 
+						query=input("query:") 
 					allstation[chaine].fillemission(query)
 			  	allstation[chaine].emissions[int(emissid)].listpodcasts(int(maxx))
-				playapodcast=raw_input("1) Play one  2) Leave to menu\nchoice:")
+				playapodcast=input("1) Play one  2) Leave to menu\nchoice:")
 				if playapodcast=='1':
-					podcastid=raw_input("podcast index:") 
+					podcastid=input("podcast index:") 
 				  	allstation[chaine].emissions[int(emissid)].playpodcast(int(podcastid)) 
 					clearscreen()
 					printheader(allstation[chaine].name)
 			elif selection == '0': 
 				if allstation[chaine].query :
-					query=raw_input("query:") 
+					query=input("query:") 
 			  	allstation[chaine].searchpodcast(query) 	
 			elif selection == '3': 
 				clearscreen()
 				printheader(allstation[chaine].name)
-				print "\n---- LIVE STREAMING -----\n     hit q to stop \n"
+				print("\n---- LIVE STREAMING -----\n     hit q to stop \n")
 			  	allstation[chaine].playstation() 	
 				clearscreen()
 				printheader(allstation[chaine].name)
@@ -132,6 +132,6 @@ def main():
 			  #break
 		  	  return 0
 			else: 
-			  print "Unknown Option Selected!"
+			  print("Unknown Option Selected!")
 if __name__ == "__main__":
 	main()
