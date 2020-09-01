@@ -60,7 +60,7 @@ class stationeurope1(station):
 			    found = '' 
 			etemp = emissioneurope1(title,found)
 			qqq = "INSERT INTO emissions (station, title, podcasturl, idemission) VALUES (\""+self.name+"\",\""+etemp.name+"\",'"+etemp.podcasturl+"','"+str(etemp.idpod)+"')"
-			print qqq
+			print(qqq)
 			c.execute(qqq)
 		conn.commit()
 		conn.close()

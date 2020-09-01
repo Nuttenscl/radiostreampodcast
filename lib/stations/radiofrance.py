@@ -36,7 +36,7 @@ class stationradiofrance(station):
 						pageb = html.parse("http://www.franceculture.fr/podcast/"+foundb) 
 						aaa= pageb.xpath(GenericTranslator().css_to_xpath(".lien-rss"))[0]
 						found = re.search("http.*rss_(.*)\.xml",aaa.get("href")).group(1)
-						print found
+						print(found)
 					else:
 						found =re.search('http.*rss_(.*)\.xml', eid.get("href")).group(1)
 				except AttributeError:
@@ -69,7 +69,7 @@ class stationradiofrance(station):
 						pageb = html.parse("http://www.franceculture.fr/podcast/"+foundb) 
 						aaa= pageb.xpath(GenericTranslator().css_to_xpath(".lien-rss"))[0]
 						found = re.search("http.*rss_(.*)\.xml",aaa.get("href")).group(1)
-						print found
+						print(found)
 					else:
 						found =re.search('http.*rss_(.*)\.xml', eid.get("href")).group(1)
 				except AttributeError:
@@ -78,7 +78,7 @@ class stationradiofrance(station):
 				found=""
 			etemp = emissionradiofrance(e.text,found)
 			qqq = "INSERT INTO emissions (station, title, podcasturl, idemission) VALUES (\""+self.name+"\",\""+etemp.name+"\",'"+etemp.podcasturl+"','"+str(etemp.idpod)+"')"
-			print qqq
+			print(qqq)
 			c.execute(qqq)
 		conn.commit()
 		conn.close()

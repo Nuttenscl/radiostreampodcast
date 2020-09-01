@@ -30,7 +30,7 @@ class stationrtl(station):
 		if self.code=="rtlfr":
 			for e in page.xpath(expressiontitle):
 				try:
-					found =re.search('http://www.rtl.fr/emission/([^"]*)', e.get("href")).group(1)
+					found =re.search('https://www.rtl.fr/emission/([^"]*)', e.get("href")).group(1)
 				except AttributeError:
 				    found = '' 
 				etemp = emissionrtl(e.get("title"),found)
@@ -40,7 +40,7 @@ class stationrtl(station):
 			for e,eid in zip(page.xpath(expressiontitle),page.xpath(expressionurl)):
 				if eid.get("href"):
 					try:
-						found =re.search('http://www.rtl2.fr/podcast/(.*).xml', eid.get("href")).group(1)
+						found =re.search('https://www.rtl2.fr/podcast/(.*).xml', eid.get("href")).group(1)
 					except AttributeError:
 					    found = '' 
 				else:
@@ -54,19 +54,19 @@ class stationrtl(station):
 
 class emissionrtl(emission):
 	def __init__(self,name,idpod,rtl2=False):
-		podcasturl="http://www.rtl.fr/podcast/"+idpod+".xml"
+		podcasturl="https://www.rtl.fr/podcast/"+idpod+".xml"
 		if rtl2:
-			podcasturl="http://www.rtl2.fr/podcast/"+idpod+".xml"
+			podcasturl="https://www.rtl2.fr/podcast/"+idpod+".xml"
 		emission.__init__(self,name,podcasturl,idpod)
 
 
 
-rtlfr  = stationrtl("RTL France","rtlfr","http://www.rtl.fr/recherche?type=emission&query=","http://radio.rtl.fr/rtl.pls",'.show figure a.post-link',True)
-rtl2fr = stationrtl("RTL2 France","rtl2fr","http://www.rtl2.fr/radio/podcasts.html#","http://streaming.radio.rtl2.fr/rtl2-1-44-128",'.common h3',".common .rss")
-funradiofr = station("Fun Radio Fr.","funradiofr","http://www.funradio.fr/","http://streaming.radio.funradio.fr:80/fun-1-44-128",True)
+rtlfr  = stationrtl("RTL France","rtlfr","https://www.rtl.fr/recherche?type=emission&query=","https://radio.rtl.fr/rtl.pls",'.show figure a.post-link',True)
+rtl2fr = stationrtl("RTL2 France","rtl2fr","https://www.rtl2.fr/radio/podcasts.html#","https://streaming.radio.rtl2.fr/rtl2-1-44-128",'.common h3',".common .rss")
+funradiofr = station("Fun Radio Fr.","funradiofr","https://www.funradio.fr/","https://streaming.radio.funradio.fr:80/fun-1-44-128",True)
 
-belrtlbe = station("BelRTL Belgique","belrtlbe","http://www.rtl.be/belrtl/","http://icy.rtl.nl/belrtl128",True)
-radiocontactbe = station("Radio Contact Belgique","radiocontactbe","http://fr.radiocontact.be/","http://icy.rtl.nl/contactfr.m3u",True)
-mintbe = station("Mint","mintbe","http://www.mint.be/","http://icy.rtl.nl/mint.m3u",True)
+belrtlbe = station("BelRTL Belgique","belrtlbe","https://www.rtl.be/belrtl/","https://icy.rtl.nl/belrtl128",True)
+radiocontactbe = station("Radio Contact Belgique","radiocontactbe","https://fr.radiocontact.be/","https://icy.rtl.nl/contactfr.m3u",True)
+mintbe = station("Mint","mintbe","https://www.mint.be/","https://icy.rtl.nl/mint.m3u",True)
 
 RTL = stationgroup("RTL",[rtlfr,rtl2fr,funradiofr,belrtlbe,radiocontactbe,mintbe])

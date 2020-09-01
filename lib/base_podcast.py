@@ -29,17 +29,17 @@ class emission:
 		x.align["date"] = "l" # Left align 
 		x.align["url"] = "l" # Left align
 		x.padding_width = 1 # One space between column edges and contents (default)
-		print "Programme: "+d['channel']['title']
-		print "Author: "+d['channel']['author']
-		print "podcast xml: "+d['channel']['summary_detail']['base']
-		for ii,e in zip(range(len(d['entries'])),d['entries'][:a]):
+		print(("Programme: "+d['channel']['title']))
+		print(("Author: "+d['channel']['author']))
+		print(("podcast xml: "+d['channel']['summary_detail']['base']))
+		for ii,e in zip(list(range(len(d['entries']))),d['entries'][:a]):
 			x.add_row([ ii, e['title'],e['updated'], e['id'] ])
-		print x
+		print(x)
 
 	def playpodcast(self,Tid):
 		d = feedparser.parse(self.podurl) 
 		urltoplay = str(d['entries'][Tid]["id"])
-		print "mplayer %s" % urltoplay
+		print(("mplayer %s" % urltoplay))
 		subprocess.call(["mplayer",urltoplay])
 
 	def __str__(self):
@@ -76,9 +76,9 @@ class station:
 		x.align["Title"] = "l" # Left align 
 		x.align["id"] = "l" # Left align
 		x.padding_width = 1 # One space between column edges and contents (default)
-		for e,ii in zip(self.emissions,range(len(self.emissions))):
+		for e,ii in zip(self.emissions,list(range(len(self.emissions)))):
 			x.add_row([ii,e.name, e.podid ])
-		print x
+		print(x)
 
 	def listemissionsfromdb(self,query=""):
 		conn = sqlite3.connect('db/podcast.db')
@@ -91,7 +91,7 @@ class station:
 		for row in conn.execute(ql):
 			x.add_row([row[0], row[2],row[4] ])
 		conn.close()
-		print x
+		print(x)
 
 
 	def cleardb(self):
@@ -99,7 +99,7 @@ class station:
 		conn = connecttodb()
 		c = conn.cursor()
 		qd="delete from emissions where station=='"+self.name+"'"
-		print qd
+		print(qd)
 		c.execute(qd)
 		conn.commit()
 		conn.close()
