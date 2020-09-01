@@ -60,7 +60,7 @@ class stationeurope1(station):
 			    found = '' 
 			etemp = emissioneurope1(title,found)
 			qqq = "INSERT INTO emissions (station, title, podcasturl, idemission) VALUES (\""+self.name+"\",\""+etemp.name+"\",'"+etemp.podcasturl+"','"+str(etemp.idpod)+"')"
-			print qqq
+			print(qqq)
 			c.execute(qqq)
 		conn.commit()
 		conn.close()
@@ -68,14 +68,14 @@ class stationeurope1(station):
 
 class emissioneurope1(emission):
 	def __init__(self,name,idpod):
-		podcasturl="http://cdn-new-europe1.ladmedia.fr/var/exports/podcasts/sound/"+str(idpod)+".xml"
+		podcasturl="https://cdn-new-europe1.ladmedia.fr/var/exports/podcasts/sound/"+str(idpod)+".xml"
 		emission.__init__(self,name,podcasturl,idpod)
 		self.idpod=idpod
 		self.name=name
 		self.podcasturl=podcasturl
 
 
-europe1 = stationeurope1("Europe 1","europe1","http://www.europe1.fr/podcasts","http://vipicecast.yacast.net/europe1",'.popup .title','.popup ul li a.link')
+europe1 = stationeurope1("Europe 1","europe1","https://www.europe1.fr/podcasts","https://vipicecast.yacast.net/europe1",'.popup .title','.popup ul li a.link')
 
 Lagardere = stationgroup("Lagardere",[europe1])
  

@@ -4,7 +4,7 @@ from cssselect import GenericTranslator, SelectorError
 import re
 from lib.base_podcast import emission, station, stationgroup
 from prettytable import PrettyTable
-import urllib2
+import urllib.request, urllib.error, urllib.parse
 import json
 import time
 import sqlite3
@@ -12,9 +12,9 @@ import sqlite3
 
 class stationrtbf(station):
 	def __init__(self,name,nomcode="",podprefix=""):
-		url="http://www.rtbf.be/"+nomcode+"/podcast?by=emission"
+		url="https://www.rtbf.be/"+nomcode+"/podcast?by=emission"
 		#streamurl="http://statslive.rtbf.be/playlist/"+nomcode+"/"+nomcode+"-64.aac/playlist.pls"
-		streamurl="http://"+nomcode+".ice.rtbf.be/"+nomcode+"-128.mp3"
+		streamurl="https://"+nomcode+".ice.rtbf.be/"+nomcode+"-128.mp3"
 		station.__init__(self,name,nomcode,url,streamurl,False,True)
 		self.name=name
 		self.code=nomcode
@@ -36,7 +36,7 @@ class stationrtbf(station):
 	
 		for e in page.xpath(expressiontitle):
 			try:
-				found =re.search('http://www.rtbf.be/'+self.nomcode+'/.*?programId=([^"]*)', e.get("href")).group(1)
+				found =re.search('https://www.rtbf.be/'+self.nomcode+'/.*?programId=([^"]*)', e.get("href")).group(1)
 			except AttributeError:
 			    found = '' 
 			etemp = emissionrtbf(e.get("title"),found)
@@ -58,12 +58,12 @@ class stationrtbf(station):
 	
 		for e in page.xpath(expressiontitle):
 			try:
-				found =re.search('http://www.rtbf.be/'+self.nomcode+'/.*?programId=([^"]*)', e.get("href")).group(1)
+				found =re.search('https://www.rtbf.be/'+self.nomcode+'/.*?programId=([^"]*)', e.get("href")).group(1)
 			except AttributeError:
 			    found = '' 
 			etemp = emissionrtbf(e.get("title"),found)
 			qqq = "INSERT INTO emissions (station, title, podcasturl, idemission) VALUES (\""+self.name+"\",\""+etemp.name+"\",'"+etemp.podcasturl+"','"+str(etemp.idpod)+"')"
-			print qqq
+			print(qqq)
 			c.execute(qqq)
 			emissions.append(etemp)
 		self.emissions=emissions
@@ -73,22 +73,22 @@ class stationrtbf(station):
 
 	def searchpodcast(self,query=""):
 		emissions=[]
-		url="http://www.rtbf.be/radio/podcast/fetchall?channel="+self.nomcode+"&tab=tags&category=all&query="+query
+		url="https://www.rtbf.be/radio/podcast/fetchall?channel="+self.nomcode+"&tab=tags&category=all&query="+query
 		html_parser = etree.HTMLParser(encoding='utf-8', recover=True,strip_cdata=True)
-		jsonurl = urllib2.urlopen(url)
+		jsonurl = urllib.request.urlopen(url)
 		text = json.loads(jsonurl.read())
 		x = PrettyTable(["id","Titre", "date","url"])
 		x.align["Titre"] = "l" # Left align 
 		x.align["date"] = "l" # Left align 
 		x.align["url"] = "l" # Left align
 		x.padding_width = 1 # One space between column edges and contents (default)
-		for po,ii in zip(text['list'],range(len(text['list']))):
+		for po,ii in zip(text['list'],list(range(len(text['list'])))):
 		    x.add_row([ ii,po['title'],time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(po['created'])),po['url'] ])
-		print x		
+		print(x)		
 
 class emissionrtbf(emission):
 	def __init__(self,name,idpod):
-		podcasturl="http://rss.rtbf.be/media/rss/audio/c21-"+idpod+".xml"
+		podcasturl="https://rss.rtbf.be/media/rss/audio/c21-"+idpod+".xml"
 		emission.__init__(self,name,podcasturl,idpod)
 		self.idpod=idpod
 		self.name=name
